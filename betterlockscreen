@@ -51,6 +51,26 @@ init_config () {
     wallpaper_cmd="feh --bg-fill"
     time_format="%H:%M:%S"
 
+    # extended
+
+    ring_radius=15
+    ring_width=2
+
+    time_font="monospace"
+    time_font_size=24
+
+    greeter_font="monospace"
+    greeter_font_size=16
+
+    layout_font="monospace"
+    layout_font_size=12
+
+    verif_text="Verifying..."
+    verif_font="monospace"
+    verif_font_size=16
+
+    wrong_text="Failure.."
+
     # read user config
     USER_CONF="${XDG_CONFIG_HOME:-$HOME/.config}/betterlockscreenrc"
     if [ -e "$USER_CONF" ]; then
@@ -134,8 +154,8 @@ lock() {
         --color "$bgcolor" \
         --screen "$display_on" \
         --ind-pos="x+310:y+h-80" \
-        --radius=25 \
-        --ring-width=5 \
+        --radius=$ring_radius \
+        --ring-width=$ring_width \
         --inside-color="$insidecolor" \
         --ring-color="$ringcolor" \
         --separator-color=$separatorcolor \
@@ -151,33 +171,33 @@ lock() {
         --time-align 1 \
         --time-str "$time_format" \
         --time-color="$timecolor" \
-        --time-font="$font" \
-        --time-size="$fontlg" \
+        --time-font="$time_font" \
+        --time-size="$time_font_size" \
         --date-str "" \
         --greeter-pos="ix-265:iy+12" \
         --greeter-align 1 \
         --greeter-text "$locktext" \
         --greeter-color="$greetercolor" \
-        --greeter-font="$font" \
-        --greeter-size="$fontmd" \
+        --greeter-font="$greeter_font" \
+        --greeter-size=$greeter_font_size \
         --layout-pos="ix-265:iy+32" \
         --layout-align 1 \
         --layout-color="$layoutcolor" \
-        --layout-font="$font" \
-        --layout-size="$fontsm" \
+        --layout-font="$layout_font" \
+        --layout-size=$layout_font_size \
         --keylayout "${keylayout:-0}" \
         --verif-pos="ix+35:iy-34" \
         --verif-align 2 \
-        --verif-text="Verifying..." \
+        --verif-text="$verif_text" \
         --verif-color="$verifcolor" \
-        --verif-font="$font" \
-        --verif-size="$fontsm" \
+        --verif-font="$verif_font" \
+        --verif-size=$verif_font_size \
         --wrong-pos="ix+24:iy-34" \
         --wrong-align 2 \
-        --wrong-text="Failure!" \
+        --wrong-text="$wrong_text" \
         --wrong-color="$wrongcolor" \
-        --wrong-font="$font" \
-        --wrong-size="$fontsm" \
+        --wrong-font="$verif_font" \
+        --wrong-size=$verif_font_size \
         --modif-pos="ix+45:iy+43" \
         --modif-align 2 \
         --modif-size="$fontsm" \
